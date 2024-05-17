@@ -4,8 +4,8 @@ INSERT INTO Função (Função_ID, Designação) VALUES
     (2, 'Detetive'),
     (3, 'Representante');
 
--- Inserção de dados na tabela Funcionario
-INSERT INTO Funcionario (Funcionario_ID, Nome, Data_de_nascimento, Salário, NIF, Fotografia, Função_ID) VALUES
+-- Inserção de dados na tabela Funcionário
+INSERT INTO Funcionário (Funcionário_ID, Nome, Data_de_nascimento, Salário, NIF, Fotografia, Função_ID) VALUES
     (1, 'Miguel Silva', '1985-03-15', 1200, '123456789', 'foto_miguel.jpg', 1),
     (2, 'Ana Costa', '1990-07-21', 2800, '987654321', 'foto_ana.jpg', 2),
     (3, 'Pedro Santos', '1982-12-10', 3000, '456789123', 'foto_pedro.jpg', 3),
@@ -14,8 +14,8 @@ INSERT INTO Funcionario (Funcionario_ID, Nome, Data_de_nascimento, Salário, NIF
     (6, 'Inês Rodrigues', '1980-11-30', 850, '654987321', 'foto_ines.jpg', 1),
     (7, 'Tiago Fernandes', '1993-04-25', 2900, '987321654', 'foto_tiago.jpg', 3);
 
--- Inserção de dados na tabela Número_de_telemoveL
-INSERT INTO Número_de_telemoveL (Número_de_telemoveL_ID, Funcionario_ID) VALUES
+-- Inserção de dados na tabela Número_de_telemóvel
+INSERT INTO Número_de_telemóvel (Número_de_telemóvel_ID, Funcionário_ID) VALUES
     (934678592, 1),
     (966492873, 2),
     (922245762, 3),
@@ -25,7 +25,7 @@ INSERT INTO Número_de_telemoveL (Número_de_telemoveL_ID, Funcionario_ID) VALUE
     (964554178, 7);
 
 -- Inserção de dados na tabela Gere
-INSERT INTO Gere (Funcionario_Gestor_ID, Funcionario_ID) VALUES
+INSERT INTO Gere (Funcionário_Gestor_ID, Funcionário_ID) VALUES
     (3, 1),
     (3, 2),
     (3, 4),
@@ -44,7 +44,7 @@ INSERT INTO Terreno (Terreno_ID, Minério_previsto, Minério_coletado) VALUES
     (7, 900, 700);
 
 -- Inserção de dados na tabela Trabalha
-INSERT INTO Trabalha (Funcionario_ID, Terreno_ID) VALUES
+INSERT INTO Trabalha (Funcionário_ID, Terreno_ID) VALUES
     (1, 1),
     (2, 2),
     (3, 3),
@@ -64,7 +64,7 @@ INSERT INTO Caso (Caso_ID, Data_de_abertura, Estado, Estimativa_de_roubo, Data_d
     (7, '2024-05-10', 'Aberto', 600, NULL, 7);
 
 -- Inserção de dados na tabela Suspeito
-INSERT INTO Suspeito (Funcionario_ID, Caso_ID, Estado, Envolvimento, Notas) VALUES
+INSERT INTO Suspeito (Funcionário_ID, Caso_ID, Estado, Envolvimento, Notas) VALUES
     (1, 1, 'Inocente', 10, 'Nenhuma informação adicional.'),
     (2, 2, 'Culpado', 90, 'Suspeito estava presente na cena do crime.'),
     (3, 3, 'Em investigação', 50, 'Algumas pistas indicam possível envolvimento.'),
