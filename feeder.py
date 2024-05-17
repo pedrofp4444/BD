@@ -2,17 +2,21 @@ import mysql.connector
 from faker import Faker
 import random
 from datetime import datetime, timedelta
+import re
 
-host = input("Insira o endereço do host da base de dados MySQL (geralmente 'localhost'): ")
 user = input("Insira o nome de utilizador da base de dados MySQL: ")
 password = input("Insira a senha da base de dados MySQL: ")
 
 conn = mysql.connector.connect(
-    host=host,
+    host="localhost",
     user=user,
     password=password,
     database="Lusium"
 )
+
+if conn.is_connected():
+    print("Conectado ao MySQL Server versão ", conn.get_server_info())
+
 cursor = conn.cursor()
 
 fake = Faker('pt_PT')
@@ -33,8 +37,8 @@ for i in range(1, 101):
                    (i, nome, data_nascimento, salario, nif, fotografia, funcao_id))
 
 for i in range(1, 101):
-    num_telefone = fake.phone_number()
-    funcionario_id = random.randint(1, 100)
+    num_telefone = 900000000 + i
+    funcionario_id = i
     cursor.execute("INSERT INTO Número_de_telemoveL (Número_de_telemoveL_ID, Funcionario_ID) VALUES (%s, %s)", (num_telefone, funcionario_id))
 
 for i in range(1, 51):
