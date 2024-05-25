@@ -15,7 +15,7 @@ DELIMITER ;
 -- Function:  Calcular Média Salarial por Função
 DELIMITER $$
 
-CREATE FUNCTION MediaSalarialPorFuncao(p_Função_ID INT) RETURNS DECIMAL(10, 2)
+CREATE FUNCTION MediaSalarialPorFuncao(p_Função_ID INT) RETURNS DECIMAL(10, 2) DETERMINISTIC
 BEGIN
     DECLARE media_salarial DECIMAL(10, 2);
     
