@@ -1,4 +1,4 @@
--- Definir variáveis no topo do arquivo
+-- Definir variáveis para utilizar nas queries
 SET @Funcionario_ID = 1;
 SET @Caso_ID = 1;
 
