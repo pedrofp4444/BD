@@ -1,13 +1,15 @@
 -- Definir variáveis para utilizar nas queries
 SET @Funcionario_ID = 1;
-SET @Caso_ID = 1;
+SET @Caso_ID = 3;
+SET @Terreno_ID = 1;
 
 -- Listar o prejuízo de um terreno
 SELECT 
     Terreno_ID, 
     (Minério_previsto - Minério_coletado) AS Prejuízo
 FROM 
-    Terreno;
+    Terreno
+WHERE Terreno_ID = @Terreno_ID;
 
 -- Ver quando é que um funcionário se tornou suspeito de um determinado caso
 SELECT 
@@ -16,7 +18,7 @@ SELECT
     c.Data_de_abertura
 FROM 
     Suspeito s
-JOIN 
+INNER JOIN 
     Caso c ON s.Caso_ID = c.Caso_ID
 WHERE 
     s.Funcionário_ID = @Funcionario_ID 
@@ -31,7 +33,7 @@ SELECT
     s.Notas
 FROM 
     Suspeito s
-JOIN 
+INNER JOIN 
     Funcionário f ON s.Funcionário_ID = f.Funcionário_ID
 WHERE 
     s.Caso_ID = @Caso_ID;
@@ -42,7 +44,7 @@ SELECT
     c.Data_de_abertura
 FROM 
     Caso c
-JOIN 
+INNER JOIN 
     Suspeito s ON c.Caso_ID = s.Caso_ID
 WHERE 
     s.Funcionário_ID = @Funcionario_ID
@@ -60,7 +62,7 @@ SELECT
     c.Terreno_ID
 FROM 
     Caso c
-JOIN 
+INNER JOIN 
     Suspeito s ON c.Caso_ID = s.Caso_ID
 WHERE 
     s.Funcionário_ID = @Funcionario_ID;
@@ -84,7 +86,7 @@ SELECT
     COUNT(s.Caso_ID) AS Total_de_Casos
 FROM 
     Suspeito s
-JOIN 
+INNER JOIN 
     Funcionário f ON s.Funcionário_ID = f.Funcionário_ID
 GROUP BY 
     s.Funcionário_ID, f.Nome
