@@ -1,6 +1,5 @@
 -- Trigger: Atualizar Data de Encerramento do Caso ao Fechar
 DELIMITER $$
-
 CREATE TRIGGER AtualizarDataEncerramento
 BEFORE UPDATE ON Caso
 FOR EACH ROW
@@ -9,7 +8,6 @@ BEGIN
         SET NEW.Data_de_encerramento = CURDATE();
     END IF;
 END $$
-
 DELIMITER ;
 
 -- Function:  Calcular Média Salarial por Função
@@ -118,6 +116,13 @@ CREATE PROCEDURE CriarCasoETornarSuspeitos(
 )
 BEGIN
     DECLARE v_Caso_ID INT;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+         -- Em caso de erro, reverter todas as operações	
+         ROLLBACK;
+    END;
+    
+    START TRANSACTION;
     
     -- Insere um novo caso
     INSERT INTO Caso (Data_de_abertura, Estado, Estimativa_de_roubo, Data_de_encerramento, Terreno_ID)
@@ -132,5 +137,6 @@ BEGIN
     FROM Trabalha t
     WHERE t.Terreno_ID = p_Terreno_ID;
 
+    COMMIT;
 END $$
 DELIMITER ;
