@@ -39,3 +39,5 @@ INNER JOIN
 	Função ON Funcionário.Função_ID = Função.Função_ID
 LEFT JOIN
 	Número_de_telemóvel ON Funcionário.Funcionário_ID = Número_de_telemóvel.Funcionário_ID;
+    
+    

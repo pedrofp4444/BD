@@ -30,7 +30,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE FUNCTION CalcularIdadeFuncionario(p_Funcionario_ID INT) RETURNS INT
+CREATE FUNCTION CalcularIdadeFuncionario(p_Funcionario_ID INT) RETURNS INT DETERMINISTIC
 BEGIN
     DECLARE v_Data_de_nascimento DATE;
     DECLARE v_Idade INT;
@@ -47,7 +47,7 @@ BEGIN
 END $$
 
 DELIMITER ;
-
+/* Estava a dar muitos problemas esta function, documentamos para não chatear
 DELIMITER $$
 
 CREATE FUNCTION calcularIdade(funcionario_id INT)
@@ -78,5 +78,59 @@ BEGIN
   -- Retornar a idade do funcionário
   RETURN idade;
 END $$
+DELIMITER ;
+*/
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DELIMITER $$
+CREATE FUNCTION CalcularEstimativaDeRoubo(p_Terreno_ID INT) 
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE v_Estimativa_De_Roubo INT;
+
+    -- Obter o minério previsto e coletado para o terreno especificado
+    SELECT (Minério_previsto - Minério_coletado) INTO v_Estimativa_De_Roubo
+    FROM Terreno WHERE Terreno_ID = p_Terreno_ID;
+
+    RETURN v_Estimativa_De_Roubo;
+END $$
+DELIMITER ;
+
+-- CALL CriarCasoETornarSuspeitos(TERRENO_ID, CURDATE());
+DELIMITER $$
+CREATE PROCEDURE CriarCasoETornarSuspeitos(
+    IN p_Terreno_ID INT,
+    IN p_Data_de_abertura DATE
+)
+BEGIN
+    DECLARE v_Caso_ID INT;
+    
+    -- Insere um novo caso
+    INSERT INTO Caso (Data_de_abertura, Estado, Estimativa_de_roubo, Data_de_encerramento, Terreno_ID)
+    VALUES (p_Data_de_abertura, 'Aberto', CalcularEstimativaDeRoubo(p_Terreno_ID), NULL, p_Terreno_ID);
+    
+    -- Obter o último ID do caso inserido
+    SET v_Caso_ID = LAST_INSERT_ID();
+
+    -- Seleciona todos os funcionários que trabalham no terreno especificado
+    INSERT INTO Suspeito (Funcionário_ID, Caso_ID, Estado, Envolvimento, Notas)
+    SELECT t.Funcionário_ID, v_Caso_ID, 'Em Investigação', 3, 'Funcionário estava presente no terreno no dia do roubo'
+    FROM Trabalha t
+    WHERE t.Terreno_ID = p_Terreno_ID;
+
+END $$
 DELIMITER ;

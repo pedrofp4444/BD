@@ -3,6 +3,7 @@ INSERT INTO Função (Designação) VALUES
     ('Operacional'),
     ('Detetive'),
     ('Representante');
+    
 
 -- Inserção de dados na tabela Funcionário
 INSERT INTO Funcionário (Nome, Data_de_nascimento, Salário, NIF, Fotografia, Função_ID) VALUES
@@ -65,10 +66,10 @@ INSERT INTO Caso (Data_de_abertura, Estado, Estimativa_de_roubo, Data_de_encerra
 
 -- Inserção de dados na tabela Suspeito
 INSERT INTO Suspeito (Funcionário_ID, Caso_ID, Estado, Envolvimento, Notas) VALUES
-    (1, 1, 'Inocente', 10, 'Nenhuma informação adicional.'),
-    (2, 2, 'Culpado', 90, 'Suspeito estava presente na cena do crime.'),
-    (3, 3, 'Em investigação', 50, 'Algumas pistas indicam possível envolvimento.'),
-    (4, 4, 'Em investigação', 30, 'Não há provas concretas.'),
-    (5, 5, 'Inocente', 20, 'Sem evidências contra o suspeito.'),
-    (6, 6, 'Culpado', 80, 'Fortes indícios de participação.'),
-    (7, 7, 'Em investigação', 40, 'Possível conexão com outras investigações.');
+    (1, 1, 'Inocente', 1, 'Nenhuma informação adicional.'),
+    (2, 2, 'Culpado', 9, 'Suspeito estava presente na cena do crime.'),
+    (3, 3, 'Em investigação', 5, 'Algumas pistas indicam possível envolvimento.'),
+    (4, 4, 'Em investigação', 3, 'Não há provas concretas.'),
+    (5, 5, 'Inocente', 2, 'Sem evidências contra o suspeito.'),
+    (6, 6, 'Culpado', 8, 'Fortes indícios de participação.'),
+    (7, 7, 'Em investigação', 4, 'Possível conexão com outras investigações.');
