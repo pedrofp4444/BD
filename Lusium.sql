@@ -24,7 +24,7 @@ CREATE TABLE Funcionário (
 
 -- Criação da tabela Número de telemóvel
 CREATE TABLE Número_de_telemóvel (
-    Número_de_telemóvel_ID INT AUTO_INCREMENT NOT NULL,
+    Número_de_telemóvel_ID INT NOT NULL,
     Funcionário_ID INT NOT NULL,
     PRIMARY KEY (Número_de_telemóvel_ID),
     FOREIGN KEY (Funcionário_ID) REFERENCES Funcionário(Funcionário_ID)
