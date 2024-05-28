@@ -4,7 +4,7 @@
 
 A theoretical project made for our [BD](https://www.di.uminho.pt/~jno/sitedi/uc_8505N6.html) class.
 
-Project report can be consulted in [`[BD] Trabalho Prático.pdf`](https://github.com/pedrofp4444/BD/report/) (🇵🇹).
+Project report can be consulted in [`[BD] Trabalho Prático.pdf`](https://github.com/pedrofp4444/BD/tree/main/report) (🇵🇹).
 
 ## Project Overview
 
