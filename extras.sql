@@ -28,26 +28,6 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE FUNCTION CalcularIdadeFuncionario(p_Funcionario_ID INT) RETURNS INT DETERMINISTIC
-BEGIN
-    DECLARE v_Data_de_nascimento DATE;
-    DECLARE v_Idade INT;
-
-    -- Obter a data de nascimento do funcionário
-    SELECT Data_de_nascimento INTO v_Data_de_nascimento
-    FROM Funcionário
-    WHERE Funcionário_ID = p_Funcionario_ID;
-
-    -- Calcular a idade
-    SET v_Idade = TIMESTAMPDIFF(YEAR, v_Data_de_nascimento, CURDATE());
-
-    RETURN v_Idade;
-END $$
-
-DELIMITER ;
-
-DELIMITER $$
-
 CREATE FUNCTION CalcularIdade(Data_de_nascimento DATE) 
 RETURNS INT DETERMINISTIC
 BEGIN
