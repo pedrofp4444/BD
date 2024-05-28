@@ -24,7 +24,7 @@ SELECT
 	Funcionário.Nome,
     Função.Designação,
 	Número_de_telemóvel.Número_de_telemóvel_ID,
-	-- calcularIdade(Funcionário.Funcionário_ID) AS Idade,
+	CalcularIdade(Funcionário.Data_de_nascimento) AS Idade,
 	Funcionário.Salário,
 	Terreno.Terreno_ID,
 	Terreno.Minério_previsto,

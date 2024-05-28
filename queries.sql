@@ -1,5 +1,5 @@
 -- Definir variáveis para utilizar nas queries
-SET @Funcionario_ID = 1;
+SET @Funcionario_ID = 3;
 SET @Caso_ID = 3;
 SET @Terreno_ID = 1;
 

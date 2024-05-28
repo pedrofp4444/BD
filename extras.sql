@@ -45,53 +45,27 @@ BEGIN
 END $$
 
 DELIMITER ;
-/* Estava a dar muitos problemas esta function, documentamos para não chatear
+
 DELIMITER $$
 
-CREATE FUNCTION calcularIdade(funcionario_id INT)
-RETURNS INT
+CREATE FUNCTION CalcularIdade(Data_de_nascimento DATE) 
+RETURNS INT DETERMINISTIC
 BEGIN
-  DECLARE data_nascimento DATE;
-  DECLARE ano_atual INT;
-  DECLARE mes_atual INT;
-  DECLARE idade INT;
+    DECLARE idade INT;
+    
+    -- Calcula a idade considerando apenas o ano
+    SET idade = YEAR(CURDATE()) - YEAR(Data_de_nascimento);
+    
+    -- Ajusta a idade se o aniversário ainda não ocorreu este ano
+    IF (MONTH(CURDATE()) < MONTH(Data_de_nascimento)) OR 
+       (MONTH(CURDATE()) = MONTH(Data_de_nascimento) AND DAY(CURDATE()) < DAY(Data_de_nascimento)) THEN
+        SET idade = idade - 1;
+    END IF;
 
-  -- Obter data de nascimento do funcionário
-  SELECT Data_de_nascimento INTO data_nascimento FROM Funcionário WHERE Funcionário_ID = funcionario_id;
-
-  -- Obter ano e mês atual
-  SET ano_atual = YEAR(CURRENT_DATE);
-  SET mes_atual = MONTH(CURRENT_DATE);
-
-  -- Calcular a idade do funcionário
-  SET idade = ano_atual - YEAR(data_nascimento);
-
-  -- Ajustar a idade se o mês de nascimento for posterior ao mês atual
-  IF MONTH(data_nascimento) > mes_atual THEN
-    SET idade = idade - 1;
-  ELSEIF MONTH(data_nascimento) = mes_atual AND DAY(data_nascimento) > DAY(CURRENT_DATE) THEN
-    SET idade = idade - 1;
-  END IF;
-
-  -- Retornar a idade do funcionário
-  RETURN idade;
+    RETURN idade;
 END $$
+
 DELIMITER ;
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 DELIMITER $$
 CREATE FUNCTION CalcularEstimativaDeRoubo(p_Terreno_ID INT) 
@@ -139,4 +113,5 @@ BEGIN
 
     COMMIT;
 END $$
+
 DELIMITER ;
