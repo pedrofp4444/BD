@@ -1,6 +1,10 @@
 # Fundamentals of Data Bases
 
-## Grade: XX/20 ⭐️
+## Grade:
+#### Inicial phase: 19/20 ⭐️
+#### Final phase: 17/20 ⭐️
+
+## 
 
 A theoretical project made for our [BD](https://www.di.uminho.pt/~jno/sitedi/uc_8505N6.html) class.
 
